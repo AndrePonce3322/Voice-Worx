@@ -1,0 +1,94 @@
+<div class="contenedor">
+
+    <div class="contenido">
+        <div class="titulo">
+            <div class="logo">
+                <img src="https://uploads-ssl.webflow.com/609506e447c8bafc67923dd9/61eb2f28cf8b5c6715e145a2_Victoire%201.png"
+                    alt="jeje" width="30px">
+            </div>
+            <h1>Sound Stage <i class="bi bi-soundwave"></i></h1>
+        </div>
+        <div class="subirGrabacion">
+            SoundStage - el servicio número uno de grabación.
+
+            <label class="btn-file">
+                <input type="file">
+                Subir <i class="bi bi-folder2-open"></i>
+            </label>
+        </div>
+
+        <div class="microfono">
+            <div class="grabar">
+                <div class="mic" [ngClass]="{'recording': grabando}">
+
+                    <button *ngIf="!grabando" (click)="Grabar()">
+                        <i class="bi bi-mic"></i>
+                    </button>
+
+                    <button *ngIf="grabando == true && !pausar && !repetir" (click)="Pausar()">
+                        <i class="bi bi-pause-circle"></i>
+                    </button>
+
+                    <button *ngIf="pausar == true && !repetir" (click)="Continuar()">
+                        <i class="bi-play-circle"></i>
+                    </button>
+
+                    <button *ngIf="repetir" (click)="Repetir()">
+                        <i class="bi-play-circle"></i>
+                    </button>
+
+
+                    <div class="audio" [ngClass]="{'mostrarAudio': terminar}">
+                        <audio #audio src="" controls></audio>
+                    </div>
+
+
+                    <div *ngIf="grabando && !terminar" class="boxContainer">
+                        <div class="box box1"></div>
+                        <div class="box box2"></div>
+                        <div class="box box5"></div>
+                        <div class="box box3"></div>
+                        <div class="box box4"></div>
+                        <div class="box box5"></div>
+                        <div class="box box1"></div>
+                        <div class="box box2"></div>
+                        <div class="box box5"></div>
+                        <div class="box box3"></div>
+                        <div class="box box4"></div>
+                        <div class="box box5"></div>
+                        <div class="box box1"></div>
+                        <div class="box box2"></div>
+                        <div class="box box5"></div>
+                        <div class="box box3"></div>
+                        <div class="box box4"></div>
+                        <div class="box box5"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="terminar" *ngIf="grabando" (click)="Terminar(audio)">
+                <i class="bi bi-stop-circle"></i>
+            </div>
+
+
+            <div class="alert-danger" *ngIf="grabando == false">
+                <p style="text-align: center;">¡ <i class="bi bi-exclamation-triangle"></i> Error !</p>
+                <p>No se pudo empezar a grabar porque no tienes activado los permisos del micrófono, activalos en la
+                    configuración de tu navegador.</p>
+            </div>
+
+        </div>
+
+
+        <footer>
+            <a href="mailto: andreponce417@gmail.com" target="_blank" style="text-decoration: none;">&copy; Derechos de
+                autor | Andre Ponce</a>
+        </footer>
+
+
+
+
+    </div>
+
+</div>

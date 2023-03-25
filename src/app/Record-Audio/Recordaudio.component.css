@@ -1,0 +1,314 @@
+.contenedor {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #F6F1F1;
+    background-size: contain;
+}
+
+.bi-soundwave {
+    background: linear-gradient(to right, #001510, #00bf8f);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.contenedor .contenido {
+    position: relative;
+    width: 600px;
+    padding: 5px;
+    padding-top: 20px;
+}
+
+.contenido .titulo {
+    position: relative;
+    font-family: 'Gloria Hallelujah', cursive;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    color: #232323;
+    user-select: none;
+}
+
+.contenido .titulo .logo {
+    position: relative;
+    top: -16px;
+}
+
+.contenido .titulo .logo img {
+    width: 135px;
+    object-fit: cover;
+}
+
+.contenedor .titulo * {
+    font-size: 30px;
+}
+
+.subirGrabacion {
+    font-family: 'Red Hat Display', sans-serif;
+    height: 30px;
+    border-radius: 5px;
+    padding: 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    color: #232323;
+    background: #19A7CE;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.btn-file {
+    height: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 5px;
+    padding: 0px 15px;
+    background: #F6F1F1;
+    color: black;
+    font-size: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.377);
+    transition: 0.2s;
+}
+
+.btn-file:hover {
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.795);
+}
+
+.microfono {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.grabar {
+    width: 400px;
+    height: 140px;
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+}
+
+.grabar .mic {
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px #000000ad;
+    position: relative;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+.grabar .mic:hover{
+    box-shadow: 0px 0px 10px #000000dc;
+}
+
+.grabar .mic button {
+    background: #146C94;
+    height: 65px;
+    width: 65px;
+    font-size: 38px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    color: #F6F1F1;
+    border: none;
+}
+
+footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.recording {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    animation: agrandar 0.6s ease forwards;
+}
+
+.alert-danger{
+    margin-top: 50px;
+    padding: 1px;
+    width: 100%;
+    min-height: 40px;
+    border-radius: 10px;
+    background: crimson;
+    color: white;
+    text-align: center;
+}
+
+.audio{
+    position: relative;
+    width: 84%;
+    display: none;
+    align-items: center;
+}
+.mostrarAudio{
+    display: flex;
+}
+
+
+.audio audio{
+    background: none;
+    width: 100%;
+}
+
+.terminar{
+    position: relative;
+    width: 30%;
+    top: -36px;
+    background: #146C94;
+    border-radius: 0px 0px 10px 10px;
+    display: grid;
+    place-items: center;
+    color: white;
+    animation: agrandar2 0.6s ease forwards;
+    font-size: 30px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.terminar:hover{
+    color: crimson;
+}
+
+
+@keyframes agrandar2 {
+    0% {
+        width: 10%;
+    }
+    100% {
+        width: 30%;
+    }
+}
+
+@keyframes agrandar {
+    0% {
+        width: 65px;
+        border-radius: 50%;
+    }
+
+    50% {
+        border-radius: 10px;
+    }
+
+    100% {
+        width: 400px;
+        border-radius: 10px;
+    }
+}
+
+
+/* --------------------------------------------------Wave Effect ---------------------------------------------------------*/
+@keyframes quiet {
+    25% {
+        transform: scaleY(.6);
+    }
+
+    50% {
+        transform: scaleY(.4);
+    }
+
+    75% {
+        transform: scaleY(.8);
+    }
+}
+
+@keyframes normal {
+    25% {
+        transform: scaleY(1);
+    }
+
+    50% {
+        transform: scaleY(.4);
+    }
+
+    75% {
+        transform: scaleY(.6);
+    }
+}
+
+@keyframes loud {
+    25% {
+        transform: scaleY(1);
+    }
+
+    50% {
+        transform: scaleY(.4);
+    }
+
+    75% {
+        transform: scaleY(1.2);
+    }
+}
+
+.boxContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 30px;
+    --boxSize: 8px;
+    --gutter: 4px;
+    width: 70%;
+    animation: mostrar 5s forwards;
+}
+
+@keyframes mostrar {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.box {
+    transform: scaleY(.4);
+    height: 40%;
+    width: 3px;
+    background: linear-gradient(to right, #001510, #000000);
+    animation-duration: 1.2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    border-radius: 8px;
+}
+
+.ceroAnimate{
+    animation: none !important;
+}
+
+.box1 {
+    animation-name: quiet;
+}
+
+.box2 {
+    animation-name: normal;
+}
+
+.box3 {
+    animation-name: quiet;
+}
+
+.box4 {
+    animation-name: loud;
+}
+
+.box5 {
+    animation-name: quiet;
+}
