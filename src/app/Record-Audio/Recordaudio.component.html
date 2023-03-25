@@ -1,18 +1,40 @@
-<div class="contenedor">
+<div class="menu">
+    <div class="audiosAlmacenados">
+        <div class="titulo-audio">
+            <h2>AUDIOS GRABADOS <i class="bi bi-database-fill-add"></i></h2>
+        </div>
 
+        <div class="sinAudios" *ngIf="audiosAlmacenados.length == 0">
+            <h3>¡Vaya, parece que no haz grabado ningún audio! <i class="bi bi-database-x"></i></h3>
+        </div>
+
+        <div class="audios">
+            <div class="audio_grabación" *ngFor="let audio of audiosAlmacenados; let i = index">
+                <span>{{duracion[i]}}</span><audio id="cadaAudio" class="cadaAudio" [src]="sanitize(audio)"
+                    controls preload="auto"></audio>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="menu-icon" (click)="MostrarAudios()">
+    <i class="bi bi-list"></i>Audios
+</div>
+
+<div class="contenedor">
     <div class="contenido">
         <div class="titulo">
             <div class="logo">
-                <img src="https://uploads-ssl.webflow.com/609506e447c8bafc67923dd9/61eb2f28cf8b5c6715e145a2_Victoire%201.png"
-                    alt="jeje" width="30px">
+                <img src="https://hackster.imgix.net/uploads/attachments/248947/robot-161368_960_720_bJRcSz9FxG.png?auto=compress%2Cformat&w=900&h=675&fit=min"
+                    alt="logo">
             </div>
-            <h1>Sound Stage <i class="bi bi-soundwave"></i></h1>
+            <h1>VoiceWorx <i class="bi bi-soundwave"></i></h1>
         </div>
         <div class="subirGrabacion">
-            SoundStage - el servicio número uno de grabación.
+            <span style="color: white;">VoiceWorx - el servicio número uno de grabación.</span>
 
             <label class="btn-file">
-                <input type="file">
+                <input type="file" (change)="Subir($event)">
                 Subir <i class="bi bi-folder2-open"></i>
             </label>
         </div>
@@ -20,12 +42,11 @@
         <div class="microfono">
             <div class="grabar">
                 <div class="mic" [ngClass]="{'recording': grabando}">
-
                     <button *ngIf="!grabando" (click)="Grabar()">
                         <i class="bi bi-mic"></i>
                     </button>
 
-                    <button *ngIf="grabando == true && !pausar && !repetir" (click)="Pausar()">
+                    <button *ngIf="grabando == true && !pausar && !repetir && !audio_upload" (click)="Pausar()">
                         <i class="bi bi-pause-circle"></i>
                     </button>
 
@@ -33,15 +54,17 @@
                         <i class="bi-play-circle"></i>
                     </button>
 
-                    <button *ngIf="repetir" (click)="Repetir()">
-                        <i class="bi-play-circle"></i>
+                    <button *ngIf="repetir && !audio_upload" (click)="Repetir()">
+                        <i class="bi-arrow-repeat"></i>
                     </button>
 
+                    <button *ngIf="audio_upload" (click)="GrabarDespuesDeSubirArchivo()">
+                        <i class="bi bi-boombox"></i>
+                    </button>
 
                     <div class="audio" [ngClass]="{'mostrarAudio': terminar}">
-                        <audio #audio src="" controls></audio>
+                        <audio controls *ngIf="audioURL" [src]="sanitize(audioURL)" preload="auto"></audio>
                     </div>
-
 
                     <div *ngIf="grabando && !terminar" class="boxContainer">
                         <div class="box box1"></div>
@@ -64,12 +87,16 @@
                         <div class="box box5"></div>
                     </div>
                 </div>
+                <!-- *ngIf="grabando && terminar == false"  -->
+                <div class="terminar" *ngIf="grabando" (click)="Terminar()">
+                    <div class="time">
+                        <i *ngIf="time" id="record-icon" class="bi bi-stop-circle"></i>
+                        <span id="time">{{time}}</span>
+                        <span *ngIf="!time">{{fileName}}</span>
+                    </div>
+                </div>
             </div>
 
-
-            <div class="terminar" *ngIf="grabando" (click)="Terminar(audio)">
-                <i class="bi bi-stop-circle"></i>
-            </div>
 
 
             <div class="alert-danger" *ngIf="grabando == false">
@@ -77,18 +104,11 @@
                 <p>No se pudo empezar a grabar porque no tienes activado los permisos del micrófono, activalos en la
                     configuración de tu navegador.</p>
             </div>
-
         </div>
-
 
         <footer>
             <a href="mailto: andreponce417@gmail.com" target="_blank" style="text-decoration: none;">&copy; Derechos de
                 autor | Andre Ponce</a>
         </footer>
-
-
-
-
     </div>
-
 </div>

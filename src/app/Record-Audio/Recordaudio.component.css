@@ -2,16 +2,19 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    left: 0;
+    top: 0;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    background-color: #F6F1F1;
-    background-size: contain;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1000%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='%231e3266'%3e%3c/rect%3e%3cpath d='M1560 560L0 560 L0 343.55Q51.96 323.51%2c 72 375.47Q93.96 277.44%2c 192 299.4Q218.88 254.27%2c 264 281.15Q359.31 256.46%2c 384 351.78Q438.61 286.39%2c 504 341Q534.6 251.6%2c 624 282.19Q670.85 257.04%2c 696 303.89Q761.59 249.48%2c 816 315.07Q881.44 308.51%2c 888 373.96Q909.23 275.19%2c 1008 296.42Q1085.95 254.37%2c 1128 332.32Q1172.63 304.95%2c 1200 349.59Q1272.08 301.66%2c 1320 373.74Q1348.6 282.34%2c 1440 310.94Q1518.79 269.73%2c 1560 348.51z' fill='%23182f5d'%3e%3c/path%3e%3cpath d='M1488 560L0 560 L0 362.28Q99.32 341.6%2c 120 440.92Q127.77 376.69%2c 192 384.46Q215.2 335.66%2c 264 358.87Q320.4 343.27%2c 336 399.68Q383.01 326.69%2c 456 373.71Q534.65 332.36%2c 576 411.01Q653.99 369%2c 696 446.99Q706.97 385.96%2c 768 396.93Q796.44 353.37%2c 840 381.81Q921.66 343.47%2c 960 425.13Q963.36 356.49%2c 1032 359.85Q1101.41 357.26%2c 1104 426.67Q1115.24 365.92%2c 1176 377.16Q1250.35 331.51%2c 1296 405.86Q1324.72 362.58%2c 1368 391.29Q1454.9 358.2%2c 1488 445.1z' fill='%2325467d'%3e%3c/path%3e%3cpath d='M1512 560L0 560 L0 424.63Q75.37 428%2c 72 503.36Q95.79 407.15%2c 192 430.95Q238.41 405.36%2c 264 451.76Q353.34 421.1%2c 384 510.44Q403.24 457.68%2c 456 476.92Q500.79 449.71%2c 528 494.5Q538.08 432.58%2c 600 442.66Q628.21 398.87%2c 672 427.08Q729.31 412.39%2c 744 469.71Q790.96 444.66%2c 816 491.62Q818.45 422.06%2c 888 424.51Q941.85 406.36%2c 960 460.2Q1037.03 417.23%2c 1080 494.25Q1126.01 468.26%2c 1152 514.27Q1185.56 427.83%2c 1272 461.39Q1347.75 417.14%2c 1392 492.9Q1426.7 407.6%2c 1512 442.3z' fill='%23356cb1'%3e%3c/path%3e%3cpath d='M1488 560L0 560 L0 555.98Q73.46 509.44%2c 120 582.91Q171.6 514.51%2c 240 566.11Q263.49 517.6%2c 312 541.09Q366.96 524.05%2c 384 579.01Q402.45 477.46%2c 504 495.91Q548.86 468.77%2c 576 513.63Q633.52 499.15%2c 648 556.68Q699.8 488.48%2c 768 540.28Q788.82 489.1%2c 840 509.92Q868.24 466.16%2c 912 494.4Q995.73 458.13%2c 1032 541.86Q1057.13 494.99%2c 1104 520.12Q1145.41 489.53%2c 1176 530.94Q1253.21 488.15%2c 1296 565.36Q1322.62 471.98%2c 1416 498.6Q1464.02 474.63%2c 1488 522.65z' fill='white'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1000'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+    background-position: center;
+    background-size: cover;
 }
 
 .bi-soundwave {
-    background: linear-gradient(to right, #001510, #00bf8f);
+    background: linear-gradient(to right, #3E54AC, #00bf8f);
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -20,28 +23,34 @@
     position: relative;
     width: 600px;
     padding: 5px;
-    padding-top: 20px;
+    padding-top: 60px;
 }
 
 .contenido .titulo {
     position: relative;
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Tilt Prism', cursive;
+    letter-spacing: 2px;
     width: 100%;
     height: 80px;
     display: flex;
-    align-items: flex-start;
+    align-items: flex-end;
     justify-content: space-between;
-    color: #232323;
+    color: white;
     user-select: none;
+}
+
+.contenido .titulo h1 {
+    padding: 0px;
+    margin: 0;
 }
 
 .contenido .titulo .logo {
     position: relative;
-    top: -16px;
+    top: 8px;
 }
 
 .contenido .titulo .logo img {
-    width: 135px;
+    width: 120px;
     object-fit: cover;
 }
 
@@ -51,15 +60,13 @@
 
 .subirGrabacion {
     font-family: 'Red Hat Display', sans-serif;
-    height: 30px;
     border-radius: 5px;
-    padding: 0px 10px;
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: white;
     color: #232323;
-    background: #19A7CE;
+    background: #3E54AC;
 }
 
 input[type="file"] {
@@ -73,7 +80,7 @@ input[type="file"] {
     cursor: pointer;
     gap: 5px;
     padding: 0px 15px;
-    background: #F6F1F1;
+    background: #ECF2FF;
     color: black;
     font-size: 15px;
     border-radius: 5px;
@@ -88,8 +95,6 @@ input[type="file"] {
 .microfono {
     display: grid;
     place-items: center;
-    width: 100%;
-    height: 100px;
     margin-top: 20px;
     border-radius: 5px;
 }
@@ -97,33 +102,45 @@ input[type="file"] {
 .grabar {
     width: 400px;
     height: 140px;
-    border-radius: 5px;
-    display: grid;
-    place-items: center;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: rgba(255, 255, 240, .2) 0 0 200px 100px, inset rgba(0, 0, 0, .8) 0 0 20px;
+    overflow: hidden;
 }
+
 
 .grabar .mic {
     border-radius: 50%;
-    box-shadow: 0px 0px 5px #000000ad;
     position: relative;
     overflow: hidden;
     transition: 0.2s;
+    box-shadow: 0px 0px 50px #ffffff70;
 }
 
-.grabar .mic:hover{
-    box-shadow: 0px 0px 10px #000000dc;
+.grabar .mic:hover {
+    box-shadow: 0px 0px 10px #ffffff70;
 }
 
 .grabar .mic button {
-    background: #146C94;
-    height: 65px;
-    width: 65px;
+    background: #3E54AC;
+    height: 100%;
+    width: 80px;
     font-size: 38px;
     cursor: pointer;
     display: grid;
     place-items: center;
     color: #F6F1F1;
     border: none;
+}
+
+.grabar .mic .bi-mic {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 footer {
@@ -135,14 +152,19 @@ footer {
     justify-content: center;
 }
 
+footer a {
+    color: #4E6E81;
+}
+
 .recording {
+    border-radius: 0px !important;
     display: flex;
     justify-content: space-between;
-    background: white;
+    background: #f1f3f4;
     animation: agrandar 0.6s ease forwards;
 }
 
-.alert-danger{
+.alert-danger {
     margin-top: 50px;
     padding: 1px;
     width: 100%;
@@ -153,66 +175,209 @@ footer {
     text-align: center;
 }
 
-.audio{
+.audio {
     position: relative;
     width: 84%;
     display: none;
     align-items: center;
 }
-.mostrarAudio{
+
+.mostrarAudio {
     display: flex;
 }
 
-
-.audio audio{
+.audio audio {
     background: none;
     width: 100%;
 }
 
-.terminar{
+.terminar {
     position: relative;
-    width: 30%;
-    top: -36px;
-    background: #146C94;
-    border-radius: 0px 0px 10px 10px;
+    background: #3E54AC;
     display: grid;
     place-items: center;
-    color: white;
-    animation: agrandar2 0.6s ease forwards;
-    font-size: 30px;
+    color: #ECF2FF;
     transition: 0.3s;
     cursor: pointer;
-}
-.terminar:hover{
-    color: crimson;
+    animation: agrandar2 0.6s ease forwards;
 }
 
+.terminar:hover,
+.grabar .mic button:hover {
+    background: #2c439e;
+}
 
-@keyframes agrandar2 {
+.time {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.time i {
+    animation: terminarBtn 1s alternate infinite;
+    font-size: 20px;
+}
+
+.time span {
+    font-size: 16px;
+}
+
+.audiosAlmacenados {
+    position: absolute;
+    width: 600px;
+    height: 99.4%;
+    left: -100%;
+    background: #ECF2FF;
+    border-right: 2px #232323 solid;
+    padding: 2px;
+    color: #232323;
+    overflow-y: auto;
+    transition: 0.3s ease-in-out;
+}
+
+.menu {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: blur(2px);
+}
+
+.menu-icon {
+    position: fixed;
+    z-index: 2;
+    width: 100px;
+    height: 40px;
+    gap: 10px;
+    padding: 0px 10px;
+    border-radius: 5px;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 20px;
+    color: white;
+    background: #3E54AC;
+    user-select: none;
+    transition: 0.2s;
+}
+
+.menu-icon:active {
+    background: #655DBB;
+}
+
+.sinAudios {
+    font-family: 'Red Hat Display', sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.titulo-audio {
+    width: 100%;
+    font-family: 'Red Hat Display', sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.audio_grabación {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0px;
+    padding: 5px 20px;
+}
+
+.audio_grabación audio {
+    width: 60%;
+}
+
+.decoracion {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 80px;
+    z-index: 1;
+}
+
+.decoracion svg {
+    width: inherit;
+    height: inherit;
+}
+
+@keyframes terminarBtn {
     0% {
-        width: 10%;
+        color: white;
+
     }
+
     100% {
-        width: 30%;
+        color: red;
     }
 }
 
 @keyframes agrandar {
     0% {
-        width: 65px;
-        border-radius: 50%;
-    }
-
-    50% {
-        border-radius: 10px;
+        opacity: 0;
+        width: 100%;
     }
 
     100% {
-        width: 400px;
-        border-radius: 10px;
+        width: 100%;
+        height: 65%;
+        opacity: 1;
     }
 }
 
+@keyframes agrandar2 {
+    0% {
+        height: 300%;
+        width: 200%;
+    }
+
+    100% {
+        height: 35%;
+        width: 100%;
+    }
+}
+
+
+/* ******************************************************* Responsive******************************** */
+@media screen and (max-width: 1000px) {
+    .audiosAlmacenados {
+        width: 100%;
+    }
+
+    .titulo-audio {
+        margin-top: 50px;
+    }
+
+    .contenedor .contenido {
+        padding: 0px;
+        padding-top: 50px;
+    }
+
+    .subirGrabacion {
+        width: 94%;
+        gap: 10px;
+    }
+
+    .grabar {
+        width: 80%;
+    }
+
+    .recording {
+        gap: 5px;
+        padding: 0px !important;
+    }
+
+    .boxContainer {
+        padding-right: 5px !important;
+    }
+}
 
 /* --------------------------------------------------Wave Effect ---------------------------------------------------------*/
 @keyframes quiet {
@@ -261,7 +426,7 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 30px;
+    padding-right: 20px;
     --boxSize: 8px;
     --gutter: 4px;
     width: 70%;
@@ -289,7 +454,7 @@ footer {
     border-radius: 8px;
 }
 
-.ceroAnimate{
+.ceroAnimate {
     animation: none !important;
 }
 
