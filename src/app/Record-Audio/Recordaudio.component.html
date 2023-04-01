@@ -10,9 +10,18 @@
 
         <div class="audios">
             <div class="audio_grabación" *ngFor="let audio of audiosAlmacenados; let i = index">
-                <span>{{duracion[i]}}</span><audio id="cadaAudio" class="cadaAudio" [src]="sanitize(audio)"
-                    controls preload="auto"></audio>
+                <span>{{duracion[i]}}</span><audio id="cadaAudio" class="cadaAudio" [src]="sanitize(audio)" controls
+                    preload="auto"></audio>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="subiendo-archivos" [ngClass]="{'mostrar': subiendo_archivos}">
+    <div class="contenido">
+        <h1>Subiendo "{{fileName}}" al servidor por favor espera... 🙂</h1>
+        <div class="progress-bar" *ngIf="subiendo_archivos" >
+            <div class="progress-fill"></div>
         </div>
     </div>
 </div>
@@ -31,12 +40,14 @@
             <h1>VoiceWorx <i class="bi bi-soundwave"></i></h1>
         </div>
         <div class="subirGrabacion">
-            <span style="color: white;">VoiceWorx - el servicio número uno de grabación.</span>
+            <div class="contenido_grabacion">
+                <span style="color: white;">VoiceWorx - el servicio número uno de grabación.</span>
 
-            <label class="btn-file">
-                <input type="file" (change)="Subir($event)">
-                Subir <i class="bi bi-folder2-open"></i>
-            </label>
+                <label class="btn-file">
+                    <input type="file" accept=".mp3, .wav" (change)="Subir($event)">
+                    Subir <i class="bi bi-folder2-open"></i>
+                </label>
+            </div>
         </div>
 
         <div class="microfono">

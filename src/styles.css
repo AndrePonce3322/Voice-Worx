@@ -11,3 +11,14 @@ p,
 span {
     font-family: 'Red Hat Display', sans-serif;
 }
+
+:root {
+    --green: #b8d953;
+    --lilac: #b2b2eb;
+    --pink: #bb86e9;
+    --dark-green: #529a91;
+    --peach: #fe96b7;
+    --black: #191819;
+    --grey: #2a292a;
+    --white: #d9d9d9;
+  }

@@ -1,13 +1,15 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
+import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage'
 
 @Component({
     selector: 'record-audio-app',
     templateUrl: './Recordaudio.component.html',
-    styleUrls: ['./Recordaudio.component.css']
+    styleUrls: ['./Recordaudio.component.css', 'loading-bar.component.css'],
+
 })
 
-export class RecordAudioComponent {
+export class RecordAudioComponent implements OnInit {
 
     // Variables Elemento Doom
     grabando!: boolean;
@@ -33,7 +35,15 @@ export class RecordAudioComponent {
     duracion: string[] = [];
     fileName!: string;
 
-    constructor(private domSanitizer: DomSanitizer) { }
+    // Variables subiendo archivo
+    subiendo_archivos = false;
+
+    constructor(private domSanitizer: DomSanitizer, private storage: Storage) { }
+
+    ngOnInit(): void {
+        this.ObtenerDatosDeFirebase();
+    }
+
     sanitize(url: string) {
         return this.domSanitizer.bypassSecurityTrustUrl(url);
     }
@@ -41,7 +51,6 @@ export class RecordAudioComponent {
     Grabar() {
         this.grabando = true;
         this.terminar = false;
-        this.time = `00:00:00s`;
         clearInterval(this.SetInterval);
 
         navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
@@ -64,10 +73,12 @@ export class RecordAudioComponent {
                 this.audioURL = URL.createObjectURL(this.audioBlob);
                 // Almacenar Audios
                 this.audiosAlmacenados.push(this.audioURL);
-
+  
+                // Almacenar los datos a firebase cloud
+                this.SubirAudiosFirebase(this.audioBlob, `Tiempo: ${this.time}`);
+                this.time = `00:00:00s`;
             })
-
-        }).catch((error) => {
+        }).catch(() => {
             // If permission or an error ocurrer.
             this.grabando = false;
         })
@@ -116,6 +127,7 @@ export class RecordAudioComponent {
         this.terminar = true;
         this.mediaRecorder.stop();
         this.TerminarTemporizador();
+
     }
 
     Repetir() {
@@ -134,7 +146,6 @@ export class RecordAudioComponent {
         this.repetir = false;
 
         // Starting Again
-        this.mediaRecorder.start();
         this.Grabar();
     }
 
@@ -151,9 +162,7 @@ export class RecordAudioComponent {
 
         // Starting Again
         this.Grabar();
-        this.mediaRecorder.start();
     }
-
 
     Temporizador() {
         let cond_segundos;
@@ -221,6 +230,11 @@ export class RecordAudioComponent {
         this.audiosAlmacenados.push(this.audioURL);
         this.duracion.push(`${this.fileName}`);
 
+        this.SubirDatosFirebase(evento);
+
+        this.subiendo_archivos = true;
+
+        // Reiniciando los valores
         this.time = '';
         this.grabando = true;
         this.terminar = true;
@@ -230,4 +244,40 @@ export class RecordAudioComponent {
         this.audio_upload = true;
     }
 
+    ObtenerDatosDeFirebase() {
+        const audios = ref(this.storage, 'audios');
+
+        listAll(audios).then(async (respuesta) => {
+            for (let item of respuesta.items) {
+                const url = await getDownloadURL(item);
+
+                this.duracion.push(item.name)
+                this.audiosAlmacenados.push(url);
+                console.log(url);
+            }
+        })
+    }
+
+
+    SubirAudiosFirebase(audio: Blob, duracion: string) {
+        console.log(audio);
+        const referencia = ref(this.storage, `audios/${duracion}`);
+
+        uploadBytes(referencia, audio).then((response) => {
+            console.log('Todo bien', response);
+        });
+    }
+
+    SubirDatosFirebase(evento: any) {
+        const archivo = evento.target.files[0]
+
+        const referencia = ref(this.storage, `audios/${archivo.name}`)
+
+        uploadBytes(referencia, archivo).then((respuesta) => {
+            console.log('Los datos se han enviado correctamente!', respuesta)
+            this.subiendo_archivos = false;
+        }).catch(() => {
+            this.subiendo_archivos = false;
+        });
+    }
 }
