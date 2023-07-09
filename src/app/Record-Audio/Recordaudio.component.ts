@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
-import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage'
+import { Storage, ref, uploadBytes, listAll, getDownloadURL, deleteObject} from '@angular/fire/storage'
 
 @Component({
     selector: 'record-audio-app',
@@ -253,19 +253,16 @@ export class RecordAudioComponent implements OnInit {
 
                 this.duracion.push(item.name)
                 this.audiosAlmacenados.push(url);
-                console.log(url);
             }
         })
     }
 
 
     SubirAudiosFirebase(audio: Blob, duracion: string) {
-        console.log(audio);
         const referencia = ref(this.storage, `audios/${duracion}`);
 
-        uploadBytes(referencia, audio).then((response) => {
-            console.log('Todo bien', response);
-        });
+        // Subiendo datos
+        uploadBytes(referencia, audio);
     }
 
     SubirDatosFirebase(evento: any) {
@@ -273,11 +270,18 @@ export class RecordAudioComponent implements OnInit {
 
         const referencia = ref(this.storage, `audios/${archivo.name}`)
 
-        uploadBytes(referencia, archivo).then((respuesta) => {
-            console.log('Los datos se han enviado correctamente!', respuesta)
+        uploadBytes(referencia, archivo).then(() => {
+            // Quitando la alerta de subiendo archivos
             this.subiendo_archivos = false;
         }).catch(() => {
             this.subiendo_archivos = false;
         });
+    }
+
+    EliminarEnBaseDeDatos(){
+        const referencia = ref(this.storage, 'audios/Tiempo: 00:00:11s')
+        deleteObject(referencia).then(()=>{
+            alert('Audio de 11 segundos eliminado correctamente');
+        }).catch((error)=> console.log('Ha ocurrido un error =>', error));
     }
 }
